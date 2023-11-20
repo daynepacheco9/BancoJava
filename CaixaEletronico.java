@@ -129,4 +129,11 @@ class ContaCorrentePessoaJuridica extends ContaCorrente {
     }
 }
 
+class TransferenciaException extends Exception {
+    public TransferenciaException(String message) {
+        super(message);
+    }
+}
+
+
 
