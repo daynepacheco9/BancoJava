@@ -104,5 +104,24 @@ public class CaixaEletronicoGUI {
             throw new TransferenciaException("Tipo de conta inválido para transferência.");
         }
     }
+    public static void main(String[] args) {
+        // Criar instâncias de conta e transferências recebidas
+        ContaCorrentePessoaFisica contaPessoaFisica = new ContaCorrentePessoaFisica("Maria da Silva", "021.213.415-21",
+                3000.00);
+        ArrayList<Double> transferenciasRecebidas = new ArrayList<>();
+        transferenciasRecebidas.add(200.00);
+        transferenciasRecebidas.add(600.00);
+        transferenciasRecebidas.add(250.00);
+        transferenciasRecebidas.add(400.00);
+        transferenciasRecebidas.add(23.00);
+        transferenciasRecebidas.add(300.00);
 
+        // Iniciar a interface gráfica
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new CaixaEletronicoGUI(contaPessoaFisica, transferenciasRecebidas);
+            }
+        });
+    }
 }
