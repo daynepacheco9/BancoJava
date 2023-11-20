@@ -83,4 +83,26 @@ public class CaixaEletronicoGUI {
         frame.setVisible(true);
     }
 
+    private void exibirSaldoAtual() {
+        JOptionPane.showMessageDialog(null, "Saldo Atual: R$ " + conta.saldo);
+    }
+
+    private ContaCorrente escolherDestinoTransferencia(ContaCorrente origem) throws TransferenciaException {
+        String[] opcoes = { "PF", "PJ" };
+        String tipoConta = (String) JOptionPane.showInputDialog(null, "Escolha o tipo de conta de destino:",
+                "Escolher Destino", JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
+
+        if (tipoConta == null) {
+            throw new TransferenciaException("Transferência cancelada pelo usuário.");
+        }
+
+        if (tipoConta.equalsIgnoreCase("PF")) {
+            return new ContaCorrentePessoaFisica("Destino PF", "000.000.000-00", 0.0);
+        } else if (tipoConta.equalsIgnoreCase("PJ")) {
+            return new ContaCorrentePessoaJuridica("Destino PJ", "000.000.000/0000-00", 0.0);
+        } else {
+            throw new TransferenciaException("Tipo de conta inválido para transferência.");
+        }
+    }
+
 }
